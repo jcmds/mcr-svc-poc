@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+option csharp_namespace = "BankAccounts";
+
+package BankAccount;
+
+service GrpcBankAccountService {
+	
+	rpc Create(CreateBankAccountRequest) returns (EmptyResponse);
+	rpc Update(UpdateBankAccountRequest) returns (EmptyResponse);
+	rpc Delete(DeleteBankAccountRequest) returns (EmptyResponse);
+	rpc GetById(GetByIdBankAccountRequest) returns (BankAccountResponse);
+	rpc GetAll(GetAllBankAccountsRequest) returns (BankAccountsResponse);
+
+}
+
+message EmptyResponse { }
+
+message GetByIdBankAccountRequest {
+	string id = 1;
+}
+
+message GetAllBankAccountsRequest { }
+
+message CreateBankAccountRequest {
+	int32  bankType = 1;
+	int32 ag = 2;
+	int32 agDig = 3;
+	int32 accountNumber  = 4;
+	int32 accountNumberDig  = 5;
+	string description = 6;
+}
+
+message UpdateBankAccountRequest {
+	int32  bankType = 1;
+	int32 ag = 2;
+	int32 agDig = 3;
+	int32 accountNumber  = 4;
+	int32 accountNumberDig  = 5;
+	string description = 6;
+	string id = 7;
+}
+
+message DeleteBankAccountRequest {
+	string id = 1;
+}
+
+message BankAccountResponse {
+	int32  bankType = 1;
+	int32 ag = 2;
+	int32 agDig = 3;
+	int32 accountNumber  = 4;
+	int32 accountNumberDig  = 5;
+	string description = 6;
+}
+
+message BankAccountsResponse{
+	repeated BankAccountResponse items = 1;
+}

@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+option csharp_namespace = "Customers";
+
+package Customer;
+
+service GrpcCustomerService {
+	
+	rpc Create(CreateCustomerRequest) returns (EmptyResponse);
+	rpc Update(UpdateCustomerRequest) returns (EmptyResponse);
+	rpc Delete(DeleteCustomerRequest) returns (EmptyResponse);
+	rpc GetById(GetByIdCustomerRequest) returns (CustomerResponse);
+	rpc GetAll(GetAllCustomersRequest) returns (CustomersResponse);
+
+}
+
+message EmptyResponse { }
+
+message GetByIdCustomerRequest {
+	string id = 1;
+}
+
+message GetAllCustomersRequest { }
+
+message CreateCustomerRequest {
+	 string legalName = 1;
+	 string tradeName = 2;
+	 string contactNumber = 3;
+	 string document = 4;
+	 Address Address = 5;
+}
+
+message Address {
+	
+	 string Street = 1;
+	 string District = 2;
+	 string City = 3;
+	 string Number = 4;
+	 string Complement = 5;
+	 string ZipCode = 6;
+}
+
+message UpdateCustomerRequest {
+	string id = 1;
+	string legalName = 2;
+	string tradeName = 3;
+	string contactNumber = 4;
+	string document = 5;
+	Address Address = 6;
+}
+
+message DeleteCustomerRequest {
+	string id = 1;
+}
+
+message CustomerResponse {
+	string id = 1;
+	string legalName = 2;
+	string tradeName = 3;
+	string contactNumber = 4;
+	string document = 5;
+	Address Address = 6;
+}
+
+message CustomersResponse{
+	repeated CustomerResponse items = 1;
+}

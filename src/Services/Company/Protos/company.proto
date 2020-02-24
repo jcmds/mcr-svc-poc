@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+option csharp_namespace = "Company";
+
+package Company;
+
+service GrpcCompanyService {
+	
+	rpc Create(CreateCompanyRequest) returns (EmptyResponse);
+	rpc Update(UpdateCompanyRequest) returns (EmptyResponse);
+	rpc Delete(DeleteCompanyRequest) returns (EmptyResponse);
+	rpc GetById(GetByIdCompanyRequest) returns (CompanyResponse);
+	rpc GetAll(GetAllCompaniesRequest) returns (CompaniesResponse);
+
+}
+
+message EmptyResponse { }
+
+message GetByIdCompanyRequest {
+	string id = 1;
+}
+
+message GetAllCompaniesRequest { }
+
+message CreateCompanyRequest {
+	 string legalName = 1;
+	 string tradeName = 2;
+	 string contactNumber = 3;
+	 string document = 4;
+	 string bankAccountId = 5;
+	 Address Address = 6;
+}
+
+message Address {
+	
+	 string Street = 1;
+	 string District = 2;
+	 string City = 3;
+	 string Number = 4;
+	 string Complement = 5;
+	 string ZipCode = 6;
+}
+
+message UpdateCompanyRequest {
+	string id = 1;
+	string legalName = 2;
+	string tradeName = 3;
+	string contactNumber = 4;
+	string document = 5;
+	string bankAccountId = 6;
+	Address Address = 7;
+}
+
+message DeleteCompanyRequest {
+	string id = 1;
+}
+
+message CompanyResponse {
+	string id = 1;
+	string legalName = 2;
+	string tradeName = 3;
+	string contactNumber = 4;
+	string document = 5;
+	string bankAccountId = 6;
+	Address Address = 7;
+}
+
+message CompaniesResponse{
+	repeated CompanyResponse items = 1;
+}

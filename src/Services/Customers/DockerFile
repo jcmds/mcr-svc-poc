@@ -1,0 +1,19 @@
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build 
+
+WORKDIR /src
+COPY *.sln ./
+COPY Customers.csproj ./
+RUN dotnet restore 
+COPY . .
+
+RUN dotnet build -c Release
+
+WORKDIR /src
+RUN dotnet publish -c Release -o /app
+
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
+WORKDIR /app
+EXPOSE 80
+COPY --from=build /app .
+ENTRYPOINT ["dotnet", "Customers.dll"]
+

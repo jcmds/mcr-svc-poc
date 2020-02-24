@@ -1,0 +1,2 @@
+obj\Debug\netcoreapp3.1/BankAccount.cs \
+obj\Debug\netcoreapp3.1/BankAccountGrpc.cs: Protos/bankAccount.proto
