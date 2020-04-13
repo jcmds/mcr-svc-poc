@@ -1,4 +1,4 @@
-# e-businessSystem
+# Microservice template
 - Sample microservices project using grpc & aspnet core 3x
 
 ## Checklist to complete.
